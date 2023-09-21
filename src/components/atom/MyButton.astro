@@ -1,0 +1,16 @@
+---
+import { twMerge } from "tailwind-merge"
+
+const { class: className, disabled, type } = Astro.props
+---
+
+<button
+  class={twMerge(
+    "w-fit cursor-pointer rounded-full px-16 py-2 text-sm font-semibold hover:px-[3.8rem] hover:py-1.5  hover:text-base focus:outline-none",
+    className
+  )}
+  disabled={disabled}
+  type={type}
+>
+  <slot />
+</button>
