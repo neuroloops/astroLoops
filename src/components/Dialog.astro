@@ -1,0 +1,17 @@
+<div id="dialog" style="display: hidden">Hello world!</div>
+
+<script>
+  import { isOpen } from '../store.js';
+
+  // Listen to changes in the store, and show/hide the dialog accordingly
+  isOpen.subscribe(open => {
+    console.log(open);
+    if (open) {
+      document.getElementById('dialog').style.display = 'block';
+    } else {
+      document.getElementById('dialog').style.display = 'none';
+    }
+  })
+
+  document.getElementById('openDialog').addEventListener('click', openDialog);
+</script>

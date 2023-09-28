@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Frontend",
+    "list": [
+      "Angular",
+      "react",
+      "Nextjs",
+      "Gatsby",
+      "CSS",
+      "SASS",
+      "tailwind"
+    ],
+    "color": "#4D25DD",
+    "logo": "/skills/frontend.svg"
+  },
+  {
+    "title": "Backend",
+    "list": [
+      "Node.js",
+      "Auth0",
+      "REST API",
+      "MongoDB",
+      "MySQL"
+    ],
+    "color": "#01829E",
+    "logo": "/skills/backend.svg"
+  },
+  {
+    "title": "Devops",
+    "list": [
+      "Proxmox",
+      "Docker",
+      "Heroku",
+      "Aws",
+      "Ubuntu",
+      "Arch"
+    ],
+    "color": "#06C0E9",
+    "logo": "/skills/devops.svg"
+  },
+  {
+    "title": "Tools",
+    "list": [
+      "Postman",
+      "WebPack",
+      "Git",
+      "Figma",
+      "vscode",
+      "Midjourney",
+      "openAi"
+    ],
+    "color": "#5D5380",
+    "logo": "/skills/tools.svg"
+  }
+]

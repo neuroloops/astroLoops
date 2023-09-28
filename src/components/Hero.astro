@@ -1,0 +1,67 @@
+---
+import MyButton from './atom/MyButton.astro'
+import top from '../assets/hero/LL_hero_top.svg'
+import bottom from '../assets/hero/LL_hero_bottom.svg'
+import composition from '../assets/hero/composition.svg'
+const list = ['Frontend', 'Backend', 'Devops']
+
+import { getCollection, type CollectionEntry } from 'astro:content'
+
+type Props = {
+	posts: CollectionEntry<'posts'>[]
+}
+const posts = await getCollection('posts')
+const post = posts[0]
+
+const { Content } = await post.render()
+---
+
+<div class="max-w-screen bg scroll-mt-20" id="Hero">
+	<div class="relative left-3 top-[20%]">
+		<div>
+			<img src={top.src} alt="background logo" class="max-w-screen" />
+		</div>
+		<div class="ml-16 mt-8">
+			<img src={bottom.src} alt="background logo" class="max-w-screen w-96" />
+		</div>
+
+		<section
+			class="absolute top-0 mx-auto flex w-full flex-wrap-reverse items-center justify-center px-5 text-white"
+		>
+			<div class="flex flex-col items-center">
+				<h1 class="text-center text-5xl font-bold">
+					LudoLoops <br />
+					<span>Full stack developer</span>
+				</h1>
+
+				<ul class="mb-5 mt-7 flex text-sm font-semibold">
+					{
+						list.map((item, key) => {
+							return (
+								<li class="after:px-1 after:text-[#01FEF0] after:content-['•'] after:last:content-['']">
+									{item}
+								</li>
+							)
+						})
+					}
+				</ul>
+				<MyButton btn="dark">Contact me</MyButton>
+				{/* <div class="flex w-full"></div> */}
+			</div>
+			<div>
+				<img src={composition.src} alt="ludoloops laptop" class="mb-8 w-11/12 max-w-md" />
+			</div>
+		</section>
+	</div>
+	<div class="prose prose-2xl prose-invert relative mb-20 overflow-visible">
+		<Content />
+	</div>
+
+	<style>
+		.bg {
+			background: linear-gradient(180deg, #03035f 0%, #02023b 100%);
+			min-height: 670px;
+			height: 100vh;
+		}
+	</style>
+</div>

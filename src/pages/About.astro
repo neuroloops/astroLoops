@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content'
+// const posts = await getCollection('posts')
+const { posts } = Astro.props
+console.log('hello posts', posts)
+---
+
+<p>
+	Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quam, eius rerum non at fugiat!
+</p>

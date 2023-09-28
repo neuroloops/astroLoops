@@ -1,0 +1,74 @@
+---
+import { navMenu } from '../scripts/navMenu.js'
+
+const encEmail = 'bHVkb2xvb3BzQHBtLm1l'
+const email = atob(encEmail)
+---
+
+{/* because of sticky, need a fake div to be able to scroll to the top element */}
+
+<div id="navBar"></div>
+<div class="sticky top-0 z-30 gap-10 text-white" style={{}}>
+	<div class="flex h-20 items-center justify-evenly font-bold">
+		<img src={'/navbar/logo_text.svg'} alt="Logo" class="cursor-pointer" />
+
+		{/* burger menu */}
+		<div class="cursor-pointer md:hidden">
+			<div class="space-y-2">
+				<div class="h-0.5 w-8 bg-white"></div>
+				<div class="h-0.5 w-8 bg-white"></div>
+				<div class="h-0.5 w-8 bg-white"></div>
+			</div>
+		</div>
+
+		{/* show real nav when screen is medium size */}
+		<nav class="hidden md:block">
+			<ul class="flex gap-10 text-sm">
+				<!-- <NavLink /> -->
+				{
+					navMenu.map((item) => (
+						<li>
+							<a href={item.path} class="link">
+								{item.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+		<div class="mr-3 hidden cursor-pointer items-center lg:inline-flex">
+			<img src="/email.svg" alt="email logo" class="ml-3 mr-3" />
+			{email || ''}
+			<a href={`mailto:${email}`}>{email}</a>
+			<img class="ml-3 mr-3" src="/github.svg" alt="github logo" />
+		</div>
+	</div>
+
+	<!-- {burgerOpen ? <MenuItem {...{ burgerOpen, setBurger }} /> : null} -->
+</div>
+
+<script>
+	import { isOpen } from '../store.js'
+
+	const openDialog = () => {
+		isOpen.set(true)
+	}
+
+	type Link = Element & {
+		hash?: string
+	}
+
+	const links = document.querySelectorAll('a.link')
+
+	links.forEach((link: Link) => {
+		link.addEventListener('click', (e) => {
+			e.preventDefault()
+
+			const toLink = document.querySelector(link.hash || '')
+			toLink?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			})
+		})
+	})
+</script>

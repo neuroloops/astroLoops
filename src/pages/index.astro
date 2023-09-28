@@ -1,7 +1,18 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Hero from '../components/Hero.astro'
+import Navbar from '../components/Navbar.astro'
+import Layout from '../layouts/Layout.astro'
+import Button from '../components/Button.astro'
+import Dialog from '../components/Dialog.astro'
+import About from './About.astro'
 ---
 
-<Layout title="Welcome to Astro.">
-  <main></main>
+<Layout title="LudoLoops.dev">
+	<Navbar />
+	<Hero />
+	<main>
+		<Button />
+		<Dialog />
+		<About />
+	</main>
 </Layout>
