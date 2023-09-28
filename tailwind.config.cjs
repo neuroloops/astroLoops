@@ -37,6 +37,10 @@ module.exports = {
 					light: "#01fef0",
 					lightH: "white"
 				},
+				navBg: {
+					init: "#02025e",
+					darker: "#02023d"
+				},
 			},
 			boxShadow: {
 				'card': '0px 6px 42px rgba(0, 0, 0, 0.08);',
