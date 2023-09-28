@@ -1,19 +1,26 @@
 ---
-import { navMenu } from '../scripts/navMenu.js'
+import { logo_text, github, emailSvg } from '../assets/navbar'
 
-const encEmail = 'bHVkb2xvb3BzQHBtLm1l'
+import Dialog from '@components/Dialog.astro'
+const globals = await Astro.glob('../content/global/global.md')
+const encEmail = globals[0].frontmatter.email
 const email = atob(encEmail)
+
+const uniqueLinks = [...new Set(globals.map((link) => link.frontmatter.links).flat())]
 ---
 
 {/* because of sticky, need a fake div to be able to scroll to the top element */}
 
 <div id="navBar"></div>
-<div class="sticky top-0 z-30 gap-10 text-white" style={{}}>
-	<div class="flex h-20 items-center justify-evenly font-bold">
-		<img src={'/navbar/logo_text.svg'} alt="Logo" class="cursor-pointer" />
+<div class="sticky top-0 z-30 gap-10 text-white">
+	<div
+		class="bg-navBg-init flex h-20 items-center justify-between px-6 font-bold md:justify-evenly md:px-0"
+		id="navBar-ctn"
+	>
+		<img src={logo_text.src} alt="Logo" class="cursor-pointer" />
 
 		{/* burger menu */}
-		<div class="cursor-pointer md:hidden">
+		<div class="cursor-pointer md:hidden" id="openMenu">
 			<div class="space-y-2">
 				<div class="h-0.5 w-8 bg-white"></div>
 				<div class="h-0.5 w-8 bg-white"></div>
@@ -26,7 +33,7 @@ const email = atob(encEmail)
 			<ul class="flex gap-10 text-sm">
 				<!-- <NavLink /> -->
 				{
-					navMenu.map((item) => (
+					uniqueLinks.map((item) => (
 						<li>
 							<a href={item.path} class="link">
 								{item.name}
@@ -37,10 +44,9 @@ const email = atob(encEmail)
 			</ul>
 		</nav>
 		<div class="mr-3 hidden cursor-pointer items-center lg:inline-flex">
-			<img src="/email.svg" alt="email logo" class="ml-3 mr-3" />
-			{email || ''}
+			<img src={emailSvg.src} alt="email logo" class="ml-3 mr-3" />
 			<a href={`mailto:${email}`}>{email}</a>
-			<img class="ml-3 mr-3" src="/github.svg" alt="github logo" />
+			<img class="ml-3 mr-3" src={github.src} alt="github logo" />
 		</div>
 	</div>
 
@@ -50,8 +56,15 @@ const email = atob(encEmail)
 <script>
 	import { isOpen } from '../store.js'
 
-	const openDialog = () => {
+	const openMenu = () => {
 		isOpen.set(true)
+	}
+
+	const IdOpenMenu = document.getElementById('openMenu') || null
+	// Add an event listener to the button
+
+	if (IdOpenMenu instanceof HTMLElement) {
+		IdOpenMenu.addEventListener('click', openMenu)
 	}
 
 	type Link = Element & {
@@ -71,4 +84,13 @@ const email = atob(encEmail)
 			})
 		})
 	})
+
+	const navBar = document.getElementById('navBar-ctn') || null
+
+	if (navBar instanceof HTMLElement) {
+		const changeBackground = () => {
+			navBar.style.backgroundColor = window.scrollY != 0 ? '#02023d' : '#02025e'
+		}
+		window.addEventListener('scroll', changeBackground)
+	}
 </script>

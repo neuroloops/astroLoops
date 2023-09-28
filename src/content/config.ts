@@ -8,8 +8,15 @@ const postCollection = defineCollection({
   })
 })
 
+const globalCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+  })
+})
+
 
 
 export const collections = {
   posts: postCollection,
+  global: globalCollection
 }
