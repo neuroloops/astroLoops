@@ -1,0 +1,11 @@
+---
+import { twMerge } from 'tailwind-merge'
+
+const { class: className } = Astro.props
+---
+
+<div class={twMerge('flex justify-center bg-white', className)}>
+	<section class="max-w-6xl">
+		<slot />
+	</section>
+</div>
