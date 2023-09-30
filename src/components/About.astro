@@ -1,19 +1,40 @@
 ---
-import { getCollection } from 'astro:content'
-// const posts = await getCollection('posts')
-const { posts } = Astro.props
-console.log('hello posts', posts)
+import * as section from '@/content/sections/about.md'
+import importAssets from '@/utils/splitName'
+
+const { title, name, offer, img } = section.frontmatter
+
+const avatar = await importAssets(img, 'about')
+
+let list = []
+
+for (const { img, text } of offer) {
+	const imgSrc = await importAssets(img, 'about')
+	list.push({ img: imgSrc, text })
+}
 ---
 
-<p>
-	Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quam, eius rerum non at fugiat!
-	Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil quibusdam molestiae necessitatibus
-	reprehenderit quod, praesentium magnam repellendus error iure accusantium voluptate distinctio
-	dolorum eum officia commodi maxime explicabo. Ab culpa perspiciatis commodi maiores quibusdam
-	delectus! Fugiat cupiditate aliquam ab minus, iusto autem adipisci nesciunt in aspernatur iste
-	quidem, harum necessitatibus ipsa deserunt ea non itaque vel consequuntur accusantium eos vero?
-	Inventore, commodi. Fugit, nam optio aliquid modi quae quidem. Illum exercitationem in hic
-	deserunt natus consequuntur repudiandae quae accusamus dicta, voluptates reprehenderit, nesciunt
-	magnam architecto suscipit rem unde blanditiis provident aut eveniet quia! Temporibus maiores
-	consectetur fugiat animi ex qui.
-</p>
+<div class="flex justify-between">
+	<div><img src={avatar.src} alt="pofile picture" /></div>
+
+	<div>
+		<div>{title} {name}</div>
+		<div>
+			What can I Offer
+			<ul>
+				{
+					list.map((item) => (
+						<li class="flex">
+							<img src={item.img.src} alt={item.text} />
+							{item.text}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="prose relative mb-20 overflow-visible">
+	<section.Content />
+</div>

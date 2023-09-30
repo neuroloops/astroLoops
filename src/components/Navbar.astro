@@ -1,7 +1,5 @@
 ---
 import { logo_text, github, emailSvg } from '../assets/navbar'
-
-import Dialog from '@components/Dialog.astro'
 const globals = await Astro.glob('../content/global/global.md')
 const encEmail = globals[0].frontmatter.email
 const email = atob(encEmail)
