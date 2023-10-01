@@ -1,4 +1,5 @@
 ---
+import 'virtual:windi.css'
 import * as section from '@/content/sections/about.md'
 import importAssets from '@/utils/splitName'
 
@@ -14,18 +15,33 @@ for (const { img, text } of offer) {
 }
 ---
 
-<div class="flex justify-between">
+<div class="flex justify-between gap-8 py-28">
 	<div><img src={avatar.src} alt="pofile picture" /></div>
 
 	<div>
-		<div>{title} {name}</div>
-		<div>
-			What can I Offer
-			<ul>
+		<!--leftArrow need a relative parrent -->
+		<div class="relative">
+			<!-- prettier-ignore -->
+			<div
+				class="rounded-lg p-4 bg-gray-100
+			after:(absolute -left-5 top-1/4 -mt-5 border-1 [20px] border-l-0 border-transparent border-r-gray-100 content-[''])"
+			>
+				<div>{title}{' '}{name}</div>
+				<div class="prose mb-20 overflow-visible">
+					<section.Content />
+				</div>
+			</div>
+		</div>
+		<div class="rounded-3xl bg-white p-4
+		shadow-[0_6px_42px_0px_rgba(0,0,0,0.08)]">
+			<h2 class="text-xl">What can I Offer</h2>
+			<ul class="grid grid-cols-2">
 				{
 					list.map((item) => (
-						<li class="flex">
-							<img src={item.img.src} alt={item.text} />
+						<li class="flex items-center gap-2 py-2 ">
+							<div class="flex h-10 w-10 items-center justify-end ">
+								<img src={item.img.src} alt={item.text} />
+							</div>
 							{item.text}
 						</li>
 					))
@@ -35,6 +51,15 @@ for (const { img, text } of offer) {
 	</div>
 </div>
 
-<div class="prose relative mb-20 overflow-visible">
-	<section.Content />
-</div>
+<style>
+	.leftArrow::after {
+		content: '';
+		border: 20px solid transparent;
+		position: absolute;
+		/* border-right-color: red; */
+		border-left: 0;
+		left: -19px;
+		top: 25%;
+		margin-top: -20px;
+	}
+</style>

@@ -8,7 +8,8 @@ const config = {
 	"printWidth": 100,
 	plugins: [
 		"prettier-plugin-astro",
-		require.resolve("prettier-plugin-tailwindcss")],
+		"prettier-plugin-tailwindcss",
+	],
 	"pluginSearchDirs": false
 
 }
