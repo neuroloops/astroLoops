@@ -2,7 +2,7 @@
 interface Props {
 	title: string
 }
-
+import Debug from '@/components/atom/debug.astro'
 const { title } = Astro.props
 ---
 
@@ -16,7 +16,8 @@ const { title } = Astro.props
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="scrollbar">
+	<body class="debug-screens scrollbar">
+		<Debug />
 		<slot />
 	</body>
 </html>

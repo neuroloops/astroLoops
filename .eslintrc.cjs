@@ -5,7 +5,7 @@ module.exports = {
     "@unocss",
     "prettier",
   ],
-  parser: 'astro-eslint-parser',
+  parser: "@typescript-eslint/parser",
   plugins: [
     "@typescript-eslint"
   ],
@@ -29,4 +29,3 @@ module.exports = {
     }
   ]
 }
-
