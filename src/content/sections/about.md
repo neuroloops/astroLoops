@@ -1,7 +1,7 @@
 ---
 title: 'Hello, my name is'
 name: 'Ludovic Dumas'
-offer:
+list:
   [
     { img: 'web.svg', text: 'Building a landing page website' },
     { img: 'cart.svg', text: 'E-commerce with design with different pages' },
