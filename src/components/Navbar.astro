@@ -82,11 +82,11 @@ const uniqueLinks = [...new Set(globals.map((link) => link.frontmatter.links).fl
 	})
 
 	const navBar = document.getElementById('navBar-ctn') || null
-
 	if (navBar instanceof HTMLElement) {
 		const changeBackground = () => {
 			navBar.style.backgroundColor = window.scrollY != 0 ? '#02023d' : '#02025e'
 		}
+		changeBackground()
 		window.addEventListener('scroll', changeBackground)
 	}
 </script>
