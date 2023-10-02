@@ -1,0 +1,16 @@
+---
+const dev = import.meta.env.DEV
+---
+
+{
+	dev && (
+		<div class="fixed bottom-0 z-36 block border border-red-7 bg-red-6 px-4 py-1 hover:hidden">
+			<span class="sm:hidden">size: none</span>
+			<div class="hidden sm:block md:hidden">size: SM</div>
+			<div class="hidden md:block lg:hidden">size: MD</div>
+			<div class="hidden lg:block xl:hidden">size: LG</div>
+			<div class="hidden xl:block 2xl:hidden">size: XL</div>
+			<div class="hidden 2xl:block">size: 2XL</div>
+		</div>
+	)
+}

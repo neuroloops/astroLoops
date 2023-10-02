@@ -1,19 +1,64 @@
 ---
-import { getCollection } from 'astro:content'
-// const posts = await getCollection('posts')
-const { posts } = Astro.props
-console.log('hello posts', posts)
+import * as section from '@/content/sections/about.md'
+import importAssets from '@/utils/splitName'
+import H2 from './atom/H2.astro'
+
+const { title, name, offer, img } = section.frontmatter
+
+const avatar = await importAssets(img, 'about')
+
+let list = []
+
+for (const { img, text } of offer) {
+	const imgSrc = await importAssets(img, 'about')
+	list.push({ img: imgSrc, text })
+}
 ---
 
-<p>
-	Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quam, eius rerum non at fugiat!
-	Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil quibusdam molestiae necessitatibus
-	reprehenderit quod, praesentium magnam repellendus error iure accusantium voluptate distinctio
-	dolorum eum officia commodi maxime explicabo. Ab culpa perspiciatis commodi maiores quibusdam
-	delectus! Fugiat cupiditate aliquam ab minus, iusto autem adipisci nesciunt in aspernatur iste
-	quidem, harum necessitatibus ipsa deserunt ea non itaque vel consequuntur accusantium eos vero?
-	Inventore, commodi. Fugit, nam optio aliquid modi quae quidem. Illum exercitationem in hic
-	deserunt natus consequuntur repudiandae quae accusamus dicta, voluptates reprehenderit, nesciunt
-	magnam architecto suscipit rem unde blanditiis provident aut eveniet quia! Temporibus maiores
-	consectetur fugiat animi ex qui.
-</p>
+<div class="justify-between gap-8 py-28 md:flex">
+	<div class="">
+		<img class="mx-auto md:mx-none" src={avatar.src} alt="pofile picture" />
+	</div>
+
+	<div>
+		<!--leftArrow need a relative parrent -->
+		<div class="relative">
+			<div class="leftArrow border-gray-100 rounded-lg bg-gray-100 p-4">
+				<div><p class="font-bold">{title}</p> <H2>{name}</H2></div>
+				<div class="mb-20 overflow-visible prose">
+					<section.Content />
+				</div>
+			</div>
+		</div>
+		<div class="mt-8 rounded-3xl bg-white p-4 shadow-[0_6px_42px_0px_rgba(0,0,0,0.08)]">
+			<H2>What can I Offer</H2>
+			<ul class="grid grid-cols-2">
+				{
+					list.map((item) => (
+						<li class="flex items-center gap-2 py-2">
+							<div class="h-10 w-10 flex items-center justify-end">
+								<img src={item.img.src} alt={item.text} />
+							</div>
+							{item.text}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<style>
+	@media (min-width: 768px) {
+		.leftArrow::after {
+			content: '';
+			border: 20px solid transparent;
+			position: absolute;
+			border-right-color: inherit;
+			border-left: 0;
+			left: -19px;
+			top: 25%;
+			margin-top: -20px;
+		}
+	}
+</style>

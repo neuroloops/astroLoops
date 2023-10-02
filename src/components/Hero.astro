@@ -17,7 +17,7 @@ const post = posts[0]
 const { Content } = await post.render()
 ---
 
-<div class="max-w-screen bg scroll-mt-20" id="Hero">
+<div class="bg max-w-screen scroll-mt-20" id="Hero">
 	<div class="relative left-3 top-[20%]">
 		<div>
 			<img src={top.src} alt="background logo" class="max-w-screen" />
@@ -27,7 +27,7 @@ const { Content } = await post.render()
 		</div>
 
 		<section
-			class="absolute top-0 mx-auto flex w-full flex-wrap-reverse items-center justify-center px-5 text-white"
+			class="absolute top-0 mx-auto w-full flex flex-wrap-reverse items-center justify-center px-5 text-white"
 		>
 			<div class="flex flex-col items-center">
 				<h1 class="text-center text-5xl font-bold">
@@ -46,15 +46,15 @@ const { Content } = await post.render()
 						})
 					}
 				</ul>
-				<MyButton btn="dark">Contact me</MyButton>
+				<MyButton btn="dark" class="bg-red">Contact me</MyButton>
 				{/* <div class="flex w-full"></div> */}
 			</div>
 			<div>
-				<img src={composition.src} alt="ludoloops laptop" class="mb-8 w-11/12 max-w-md" />
+				<img src={composition.src} alt="ludoloops laptop" class="mb-8 max-w-md w-11/12" />
 			</div>
 		</section>
 	</div>
-	<div class="prose prose-2xl prose-invert relative mb-20 overflow-visible">
+	<div class="prose-2xl relative mb-20 overflow-visible prose prose-invert">
 		<Content />
 	</div>
 

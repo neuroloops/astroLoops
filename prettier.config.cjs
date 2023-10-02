@@ -1,6 +1,5 @@
 /** @type {import("prettier").Config} */
-const config = {
-	semi: false,
+module.exports = {
 	"useTabs": true,
 	"singleQuote": true,
 	"trailingComma": "none",
@@ -8,10 +7,16 @@ const config = {
 	"printWidth": 100,
 	plugins: [
 		"prettier-plugin-astro",
-		require.resolve("prettier-plugin-tailwindcss")],
-	"pluginSearchDirs": false
+	],
+	overrides: [
+		{
+			files: '*.astro',
+			options: {
+				parser: 'astro'
+			}
+		}
+	],
 
 }
 
-module.exports = config
 
