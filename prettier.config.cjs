@@ -1,5 +1,5 @@
 /** @type {import("prettier").Config} */
-const config = {
+module.exports = {
 	semi: false,
 	"useTabs": true,
 	"singleQuote": true,
@@ -8,10 +8,17 @@ const config = {
 	"printWidth": 100,
 	plugins: [
 		"prettier-plugin-astro",
+		"prettier-plugin-tailwindcss",
 	],
-	"pluginSearchDirs": false
+	overrides: [
+		{
+			files: '*.astro',
+			options: {
+				parser: 'astro'
+			}
+		}
+	],
 
 }
 
-module.exports = config
 

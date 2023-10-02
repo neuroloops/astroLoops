@@ -1,11 +1,9 @@
 import { defineConfig } from 'astro/config'
-
-import WindiCSS from 'vite-plugin-windicss'
+import UnoCSS from '@unocss/astro'
 
 // https://astro.build/config
 export default defineConfig({
-
-  vite: {
-    plugins: [WindiCSS()]
-  }
+  integrations: [
+    UnoCSS({ injectReset: true }),
+  ],
 })
