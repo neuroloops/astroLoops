@@ -10,7 +10,7 @@ const uniqueLinks = [...new Set(globals.map((link) => link.frontmatter.links).fl
 {/* because of sticky, need a fake div to be able to scroll to the top element */}
 
 <div id="navBar"></div>
-<div class="sticky top-0 z-30 gap-10 text-white">
+<div class="scrollbar-hide sticky top-0 z-30 w-screen gap-10 overflow-x-clip text-white">
 	<div
 		class="h-20 flex items-center justify-between bg-navBg-init px-6 font-bold md:justify-evenly md:px-0"
 		id="navBar-ctn"
