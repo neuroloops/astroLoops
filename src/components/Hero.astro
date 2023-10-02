@@ -17,17 +17,17 @@ const post = posts[0]
 const { Content } = await post.render()
 ---
 
-<div class="bg max-w-screen scroll-mt-20" id="Hero">
-	<div class="relative left-3 top-[20%]">
+<div class="bg" id="Hero">
+	<div class="relative top-[20%]">
 		<div>
-			<img src={top.src} alt="background logo" class="max-w-screen" />
+			<img src={top.src} alt="background logo" />
 		</div>
 		<div class="ml-16 mt-8">
-			<img src={bottom.src} alt="background logo" class="max-w-screen w-96" />
+			<img src={bottom.src} alt="background logo" class="w-96" />
 		</div>
 
 		<section
-			class="absolute top-0 mx-auto w-full flex flex-wrap-reverse items-center justify-center px-5 text-white"
+			class="absolute top-0 mx-auto flex flex-wrap-reverse items-center justify-center px-5 text-white"
 		>
 			<div class="flex flex-col items-center">
 				<h1 class="text-center text-5xl font-bold">
@@ -46,16 +46,13 @@ const { Content } = await post.render()
 						})
 					}
 				</ul>
-				<MyButton btn="dark" class="bg-red">Contact me</MyButton>
+				<MyButton btn="dark" class="">Contact me</MyButton>
 				{/* <div class="flex w-full"></div> */}
 			</div>
 			<div>
 				<img src={composition.src} alt="ludoloops laptop" class="mb-8 max-w-md w-11/12" />
 			</div>
 		</section>
-	</div>
-	<div class="prose-2xl relative mb-20 overflow-visible prose prose-invert">
-		<Content />
 	</div>
 
 	<style>
