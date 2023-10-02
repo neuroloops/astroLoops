@@ -3,20 +3,20 @@ import * as section from '@/content/sections/about.md'
 import importAssets from '@/utils/splitName'
 import H2 from './atom/H2.astro'
 
-const { title, name, offer, img } = section.frontmatter
+const { title, name, list, img } = section.frontmatter
 
 const avatar = await importAssets(img, 'about')
 
-let list = []
+let newList = []
 
-for (const { img, text } of offer) {
+for (const { img, text } of list) {
 	const imgSrc = await importAssets(img, 'about')
-	list.push({ img: imgSrc, text })
+	newList.push({ img: imgSrc, text })
 }
 ---
 
 <div class="justify-between gap-8 py-28 md:flex">
-	<div class="">
+	<div class="pb-6 md:pb-0">
 		<img class="mx-auto md:mx-none" src={avatar.src} alt="pofile picture" />
 	</div>
 
@@ -34,7 +34,7 @@ for (const { img, text } of offer) {
 			<H2>What can I Offer</H2>
 			<ul class="grid grid-cols-2">
 				{
-					list.map((item) => (
+					newList.map((item) => (
 						<li class="flex items-center gap-2 py-2">
 							<div class="h-10 w-10 flex items-center justify-end">
 								<img src={item.img.src} alt={item.text} />
