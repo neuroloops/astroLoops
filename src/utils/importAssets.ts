@@ -5,7 +5,7 @@ const importAssets = async (file: string, path: string) => {
 	}
 
 	const [fileName, extension] = file.split('.')
-	const { default: assets } = await import(`../assets/about/${fileName}.${extension}`)
+	const { default: assets } = await import(`../assets/${path}/${fileName}.${extension}`)
 
 	return assets
 }

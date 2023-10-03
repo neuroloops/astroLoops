@@ -1,0 +1,48 @@
+---
+import importAssets from '@/utils/importAssets'
+const {
+	props: { color, img, name, items }
+} = Astro.props
+
+console.log('img:', img)
+const image = await importAssets(img, 'skills')
+---
+
+<div class=`rounded-[19px] w-xl bg-white `>
+	<div class="flex">
+		<div class="w-38 pt-6 capitalize">
+			<h3 class="pl-6">{name}</h3>
+			<div class="mx-auto mx-auto mb-3 mt-10 h-23 w-23">
+				<img src={image.src} alt="" class="" width="90px" height="90px" />
+			</div>
+		</div>
+		<div class="radius grow bg-white shadow">
+			<hr class="bg-color mt-8 h-[10px] w-full" />
+
+			<ul class="grid grid-cols-2 pt-8">
+				{
+					items.map((item: string) => {
+						return (
+							<li class="color text-sm font-bold before:(mr-2 inline-block inline-block h-2 h-2 w-2 content-[''])">
+								{item}
+							</li>
+						)
+					})
+				}
+			</ul>
+		</div>
+	</div>
+
+	<style define:vars={{ color }}>
+		.bg-color,
+		.color::before {
+			background-color: var(--color);
+		}
+		.radius {
+			border-radius: 0px 19px 19px 0px;
+		}
+		.shadow {
+			box-shadow: -12px 0px 47px 0px rgba(0, 0, 0, 0.06);
+		}
+	</style>
+</div>
